@@ -98,10 +98,11 @@ void LivoxPointsPlugin::Load(gazebo::sensors::SensorPtr _parent, sdf::ElementPtr
     ROS_INFO_STREAM("sample:" << samplesStep);
     ROS_INFO_STREAM("downsample:" << downSample);
 
-    publishPointCloudType = sdfPtr->Get<int>("publish_pointcloud_type");
+    //publishPointCloudType = sdfPtr->Get<int>("publish_pointcloud_type");
+    publishPointCloudType =3;
     ros::init(argc, argv, curr_scan_topic);
     rosNode.reset(new ros::NodeHandle);
-    switch (publishPointCloudType) {
+    switch (publishPointCloudType) { //0:sensor_msg::pointcloud 1:	sensor_msg::pointcloud2 3: livox_ros_driver::CustomMsg
         case SENSOR_MSG_POINT_CLOUD:
             rosPointPub = rosNode->advertise<sensor_msgs::PointCloud>(curr_scan_topic, 5);
             break;
